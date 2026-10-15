@@ -37,6 +37,8 @@ internal actual suspend fun <T : Response> sseRequest(
             headers {
                 append(HttpHeaders.Accept, "text/event-stream")
                 append(HttpHeaders.CacheControl, "no-cache")
+                // Opts the stream out of the client's response decoding so events arrive unbuffered.
+                append(HttpHeaders.AcceptEncoding, "identity")
                 if (lastEventId != null) {
                     append("Last-Event-ID", lastEventId)
                 }

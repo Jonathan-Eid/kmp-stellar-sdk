@@ -91,6 +91,7 @@ object FriendBot {
      * HTTP client configuration. This ensures consistent behavior and SSL/TLS handling.
      */
     private fun createHttpClient(): HttpClient = HttpClient {
+        installContentEncoding()
         install(ContentNegotiation) {
             json(Json {
                 ignoreUnknownKeys = true

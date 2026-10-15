@@ -198,6 +198,7 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-cio:3.3.3")
+                implementation("io.ktor:ktor-client-encoding:3.3.3")
                 implementation("org.bouncycastle:bcprov-jdk18on:1.78.1")
                 implementation("commons-codec:commons-codec:1.16.1")
             }

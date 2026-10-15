@@ -6,6 +6,7 @@ package com.soneso.stellar.sdk.sep.sep08
 
 import com.soneso.stellar.sdk.Network
 import com.soneso.stellar.sdk.horizon.HorizonServer
+import com.soneso.stellar.sdk.installContentEncoding
 import com.soneso.stellar.sdk.sep.sep01.StellarToml
 import com.soneso.stellar.sdk.sep.sep08.exceptions.Sep08IncompleteInitDataException
 import com.soneso.stellar.sdk.sep.sep08.exceptions.Sep08InvalidActionResponseException
@@ -448,6 +449,7 @@ class Sep08Service(
      */
     private suspend fun <T> withHttpClient(block: suspend (HttpClient) -> T): T {
         val client = httpClient ?: HttpClient {
+            installContentEncoding()
             install(ContentNegotiation) {
                 json(json)
             }

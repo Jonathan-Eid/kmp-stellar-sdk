@@ -6,6 +6,7 @@
 //
 
 package com.soneso.stellar.sdk.smartaccount.oz
+import com.soneso.stellar.sdk.installContentEncoding
 import com.soneso.stellar.sdk.smartaccount.core.*
 
 import com.soneso.stellar.sdk.Network
@@ -303,6 +304,7 @@ class OZIndexerClient(
      * @return Configured HttpClient instance
      */
     private fun createHttpClient(timeoutMs: Long): HttpClient = HttpClient {
+        installContentEncoding()
         // No client-identification headers here: custom headers force a CORS preflight in
         // browsers, and indexer providers (including the default Mercury endpoints) only
         // allowlist standard headers, which would block every request from the web target.

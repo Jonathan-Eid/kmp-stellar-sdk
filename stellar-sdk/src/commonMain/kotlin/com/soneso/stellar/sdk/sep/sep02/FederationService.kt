@@ -4,6 +4,7 @@
 
 package com.soneso.stellar.sdk.sep.sep02
 
+import com.soneso.stellar.sdk.installContentEncoding
 import com.soneso.stellar.sdk.sep.sep01.StellarToml
 import com.soneso.stellar.sdk.sep.sep02.exceptions.Sep02FederationNotFoundException
 import com.soneso.stellar.sdk.sep.sep02.exceptions.Sep02InvalidAddressException
@@ -363,6 +364,7 @@ class FederationService(
      */
     private suspend fun <T> withHttpClient(block: suspend (HttpClient) -> T): T {
         val client = httpClient ?: HttpClient {
+            installContentEncoding()
             install(ContentNegotiation) {
                 json(json)
             }

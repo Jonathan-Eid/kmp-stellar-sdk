@@ -10,6 +10,7 @@ import com.soneso.stellar.sdk.Network
 import com.soneso.stellar.sdk.StrKey
 import com.soneso.stellar.sdk.Util
 import com.soneso.stellar.sdk.addressCredentials
+import com.soneso.stellar.sdk.installContentEncoding
 import com.soneso.stellar.sdk.isFatal
 import com.soneso.stellar.sdk.readErrorBodyOrFallback
 import com.soneso.stellar.sdk.withUpdatedAddressCredentials
@@ -212,6 +213,7 @@ class WebAuthForContracts(
          * the client identification headers `X-Client-Name` and `X-Client-Version`.
          */
         internal fun createDefaultHttpClient(): HttpClient = HttpClient {
+            installContentEncoding()
             install(ContentNegotiation) {
                 json(WebAuthForContracts.json)
             }

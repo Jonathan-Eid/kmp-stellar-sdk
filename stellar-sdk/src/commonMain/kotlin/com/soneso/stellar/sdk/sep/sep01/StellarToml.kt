@@ -4,6 +4,7 @@
 
 package com.soneso.stellar.sdk.sep.sep01
 
+import com.soneso.stellar.sdk.installContentEncoding
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -163,7 +164,7 @@ class StellarToml(
             httpClient: HttpClient? = null,
             httpRequestHeaders: Map<String, String>? = null
         ): StellarToml {
-            val client = httpClient ?: HttpClient()
+            val client = httpClient ?: HttpClient { installContentEncoding() }
             val scheme = if (isLoopbackDomain(domain)) "http" else "https"
             val url = "$scheme://$domain/.well-known/stellar.toml"
 
@@ -244,7 +245,7 @@ class StellarToml(
             httpClient: HttpClient? = null,
             httpRequestHeaders: Map<String, String>? = null
         ): Currency {
-            val client = httpClient ?: HttpClient()
+            val client = httpClient ?: HttpClient { installContentEncoding() }
 
             try {
                 val response: HttpResponse = client.get(toml) {
