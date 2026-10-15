@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- On the JVM and Android targets, every HTTP client the SDK creates for itself (Horizon, Soroban
+  RPC, Friendbot, stellar.toml, and the SEP services) sends `Accept-Encoding: gzip, deflate` and
+  decodes the response, so large Horizon pages are transferred compressed. Horizon event streams
+  send `Accept-Encoding: identity`. Clients passed in by the caller are used as given, and the
+  Darwin and JavaScript engines already negotiate compression themselves.
+
 ## [1.15.0] - 2026-10-15
 
 Migration guide: [docs/migration/1.15.0.md](docs/migration/1.15.0.md)

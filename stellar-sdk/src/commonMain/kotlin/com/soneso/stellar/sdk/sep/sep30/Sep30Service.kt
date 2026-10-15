@@ -4,6 +4,7 @@
 
 package com.soneso.stellar.sdk.sep.sep30
 
+import com.soneso.stellar.sdk.installContentEncoding
 import com.soneso.stellar.sdk.sep.sep30.exceptions.Sep30BadRequestException
 import com.soneso.stellar.sdk.sep.sep30.exceptions.Sep30ConflictException
 import com.soneso.stellar.sdk.sep.sep30.exceptions.Sep30InvalidResponseException
@@ -531,6 +532,7 @@ class Sep30Service(
      */
     private suspend fun <T> withHttpClient(block: suspend (HttpClient) -> T): T {
         val client = httpClient ?: HttpClient {
+            installContentEncoding()
             install(ContentNegotiation) {
                 json(json)
             }

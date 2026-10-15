@@ -6,6 +6,7 @@
 //
 
 package com.soneso.stellar.sdk.smartaccount.oz
+import com.soneso.stellar.sdk.installContentEncoding
 import com.soneso.stellar.sdk.smartaccount.core.*
 
 import com.soneso.stellar.sdk.isFatal
@@ -381,6 +382,7 @@ class OZRelayerClient(
      * @param timeoutMs Default request timeout in milliseconds
      */
     private fun createHttpClient(timeoutMs: Long): HttpClient = HttpClient {
+        installContentEncoding()
         defaultRequest {
             header(OZConstants.CLIENT_NAME_HEADER, OZConstants.CLIENT_NAME)
             header(OZConstants.CLIENT_VERSION_HEADER, com.soneso.stellar.sdk.Util.getSdkVersion())

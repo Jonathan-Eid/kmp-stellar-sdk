@@ -4,6 +4,7 @@
 
 package com.soneso.stellar.sdk.sep.sep24
 
+import com.soneso.stellar.sdk.installContentEncoding
 import com.soneso.stellar.sdk.sep.sep01.StellarToml
 import com.soneso.stellar.sdk.sep.sep24.exceptions.*
 import io.ktor.client.*
@@ -543,6 +544,7 @@ class Sep24Service(
      */
     private suspend fun <T> withHttpClient(block: suspend (HttpClient) -> T): T {
         val client = httpClient ?: HttpClient {
+            installContentEncoding()
             install(ContentNegotiation) {
                 json(json)
             }

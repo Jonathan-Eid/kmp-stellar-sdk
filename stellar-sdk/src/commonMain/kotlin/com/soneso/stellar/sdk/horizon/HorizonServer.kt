@@ -10,6 +10,7 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 import com.soneso.stellar.sdk.horizon.requests.AccountsRequestBuilder
+import com.soneso.stellar.sdk.installContentEncoding
 import com.soneso.stellar.sdk.isFatal
 import com.soneso.stellar.sdk.readErrorBodyOrFallback
 
@@ -58,6 +59,7 @@ class HorizonServer(
          * and identify SDK-specific issues.
          */
         fun createDefaultHttpClient(): HttpClient = HttpClient {
+            installContentEncoding()
             install(ContentNegotiation) {
                 json(defaultJson)
             }
@@ -89,6 +91,7 @@ class HorizonServer(
          * and identify SDK-specific issues.
          */
         fun createSubmitHttpClient(): HttpClient = HttpClient {
+            installContentEncoding()
             install(ContentNegotiation) {
                 json(defaultJson)
             }

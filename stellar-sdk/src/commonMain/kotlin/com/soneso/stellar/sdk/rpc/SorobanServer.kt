@@ -13,6 +13,7 @@ import com.soneso.stellar.sdk.TransactionBuilderAccount
 import com.soneso.stellar.sdk.contract.SorobanContractInfo
 import com.soneso.stellar.sdk.contract.SorobanContractParser
 import com.soneso.stellar.sdk.horizon.exceptions.ConnectionErrorException
+import com.soneso.stellar.sdk.installContentEncoding
 import com.soneso.stellar.sdk.isFatal
 import com.soneso.stellar.sdk.rpc.exception.AccountNotFoundException
 import com.soneso.stellar.sdk.rpc.exception.PrepareTransactionException
@@ -161,6 +162,7 @@ class SorobanServer(
          */
         fun defaultHttpClient(): HttpClient {
             return HttpClient {
+                installContentEncoding()
                 install(ContentNegotiation) {
                     json(Json {
                         ignoreUnknownKeys = true

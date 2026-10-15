@@ -273,6 +273,7 @@ class SSEStreamTest {
 
         assertEquals("text/event-stream", request.headers[HttpHeaders.Accept])
         assertEquals("no-cache", request.headers[HttpHeaders.CacheControl])
+        assertEquals("identity", request.headers[HttpHeaders.AcceptEncoding])
         assertEquals(listOf("kmp-stellar-sdk"), request.headers.getAll("X-Client-Name"))
         assertEquals(listOf(Util.getSdkVersion()), request.headers.getAll("X-Client-Version"))
         assertNull(request.url.parameters["X-Client-Name"], "Client identification travels in headers only")

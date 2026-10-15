@@ -4,6 +4,7 @@
 
 package com.soneso.stellar.sdk.sep.sep31
 
+import com.soneso.stellar.sdk.installContentEncoding
 import com.soneso.stellar.sdk.isFatal
 import com.soneso.stellar.sdk.sep.common.jsonElementToAny
 import com.soneso.stellar.sdk.sep.common.mapToJsonString
@@ -1163,6 +1164,7 @@ public class Sep31Service(
      */
     private suspend fun <T> withHttpClient(block: suspend (HttpClient) -> T): T {
         val client = httpClient ?: HttpClient {
+            installContentEncoding()
             followRedirects = false
             install(ContentNegotiation) {
                 json(json)
